@@ -5,9 +5,9 @@ import RatingSelect from './RatingSelect'
 
 function FeedbackForm({ handleAdd }) {
     const [text, setText] = useState('')
+    const [rating, setRating] = useState(10)
     const [btnDisabled, setBtnDisabled] = useState(true)
     const [message, setMessage] = useState('')
-    const [rating, setRating] = useState(10)
 
     const handleTextChange = (e) => {
         if (text === '') {
@@ -40,7 +40,7 @@ function FeedbackForm({ handleAdd }) {
         <Card>
             <form onSubmit={handleSubmit}>
                 <h2>How would you rate your service with us?</h2>
-                <RatingSelect />
+                <RatingSelect select={(rating) => {setRating(rating)}} />
                 <div className='input-group'>
                     <input onChange={handleTextChange} type='text' placeholder='Write a review' value={text}/>
                     <Button type='submit' isDisabled={btnDisabled}>Send</Button>
