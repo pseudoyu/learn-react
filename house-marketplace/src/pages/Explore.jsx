@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom"
 import rentCategoryImage from '../assets/jpg/rentCategoryImage.jpg'
 import sellCategoryImage from '../assets/jpg/sellCategoryImage.jpg'
+// eslint-disable-next-line
 import Slider from "../components/Slider"
 
 const Explore = () => {

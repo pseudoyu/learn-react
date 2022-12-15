@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { getAuth, updateProfile } from 'firebase/auth'
-import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc, getDoc } from 'firebase/firestore'
+import { updateDoc, doc, collection, getDocs, query, where, orderBy, deleteDoc } from 'firebase/firestore'
 import { db } from '../firebase.config'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
@@ -74,6 +74,10 @@ const Profile = () => {
         }))
     }
 
+    const onEdit = (listingId) => {
+        return navigate(`/edit-listing/${listingId}`)
+    }
+
     const onDelete = async (listingId) => {
         if(window.confirm('Are you sure you want to delete?')) {
             await deleteDoc(doc(db, 'listings', listingId))
@@ -126,7 +130,7 @@ const Profile = () => {
                     </p>
                     <ul className="listingsList">
                         { listings.map((listing) => (
-                            <ListingItem key={listing.id} listing={listing.data} id={listing.id} onDelete={() => onDelete(listing.id)} />
+                            <ListingItem key={listing.id} listing={listing.data} id={listing.id} onDelete={() => onDelete(listing.id)} onEdit={() => onEdit(listing.id)} />
                         )) }
                     </ul>
                 </>
